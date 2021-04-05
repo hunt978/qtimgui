@@ -79,6 +79,8 @@ void ImGuiRenderer::initialize(WindowWrapper *window) {
 
 void ImGuiRenderer::renderDrawList(ImDrawData *draw_data)
 {
+    // if (g_pauseRender)return;
+
     // Select current context
     ImGui::SetCurrentContext(g_ctx);
 
@@ -433,6 +435,10 @@ bool ImGuiRenderer::eventFilter(QObject *watched, QEvent *event)
     case QEvent::KeyRelease:
       this->onKeyPressRelease(static_cast<QKeyEvent*>(event));
       break;
+    case QEvent::Resize:
+      g_pauseRender = true;
+      QObject::eventFilter(watched, event);
+      g_pauseRender = false;
     default:
       break;
     }

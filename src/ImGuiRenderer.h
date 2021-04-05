@@ -58,6 +58,7 @@ private:
     unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
 
     ImGuiContext* g_ctx = nullptr;
+    bool          g_pauseRender = false;
 };
 
 }
